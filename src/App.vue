@@ -33,7 +33,7 @@
         </div>
         
         <!-- 侧面导航栏 -->
-        <div class="sider-index" style="top:49px">
+        <div class="sider-index" :class="scrollTop>0?'sider-top':''">
           <ul>
             <li>
               <a href="javascript:;" class="d-block text-center">
@@ -64,7 +64,7 @@
           <!-- 底部箭头 -->
           <ul class="jiantou">
             <li>
-              <a href="javascript:;">
+              <a href="javascript:;"  @click="gotop">
                 <i class="iconfont iconjiantou-shang"></i>
               </a>
             </li>
@@ -164,8 +164,28 @@ export default {
       footer:[
         {title:'企业服务',list:['职位搜索','新闻资讯','BOSS直娉APP']},
         {title:'使用与帮助',list:['用户协议与隐私政策','防骗指南','职位发布规则','使用帮助']},
-      ]
+      ],
+      scrollTop:0
     }
+  },
+  methods: {
+    handleScroll:function () {
+      this.scrollTop = document.documentElement.scrollTop
+      // console.log(this.scrollTop)
+    },
+    // 返回顶部
+    gotop:function () {
+      var timer=setInterval(()=>{
+        var isSpeed=Math.floor(-this.scrollTop/5);
+        document.body.scrollTop=document.documentElement.scrollTop=this.scrollTop+isSpeed;
+        if(this.scrollTop<=0){
+          clearInterval(timer)
+        }
+      },25)
+    }
+  },
+  mounted() {
+    window.addEventListener('scroll',this.handleScroll)
   },
 }
 </script>
@@ -175,6 +195,30 @@ body{
   background: #f6f6f8 !important;
   color: #414a60;
   padding: 0;margin: 0;
+}
+/* 查看更多 */
+.see{
+  width: 15.625rem;
+  height: 2.1875rem;
+  border: 1px solid #00d7c6;
+  text-align: center;
+  line-height: 2.0875rem;
+  transition: .5S;
+  margin: 1.2rem auto;
+  cursor: pointer;
+}
+.see:hover{
+  background: #00d7c6;
+  color: #fff !important;
+}
+/* 分割线 */
+.vline {
+  display: inline-block;
+  width: 1px;
+  height: 12px;
+  vertical-align: middle;
+  background: #e0e0e0;
+  margin: 0 0.3rem;
 }
 ul{
   list-style: none;
@@ -262,6 +306,8 @@ a:hover{
   right: 0;
   width: 3.75rem;
   z-index: 999;
+  top:49px;
+  transform: 1S
 }
 .sider-index ul{
   list-style: none;
@@ -275,6 +321,10 @@ a:hover{
 }
 .sider-index a .iconfont{
   font-size: 1.375rem;
+}
+.sider-top{
+ top: 0;
+ transition: 0.2S 
 }
 .jiantou{
   margin-top: 8rem;

@@ -59,18 +59,76 @@
     <!-- 招聘信息 -->
     <div class=" container">
       <!-- 行业 -->
-      <div class="d-flex zp">
+      <div class="d-flex zap hy">
         <p :class="span==0?'zpcolor':''" v-for="(item,span) of industry" :key="span">{{item}}</p>
       </div>
       <!-- 招聘信息 -->
       <div class="row">
-        <div class=" col-4">
-          1
-        </div>
-        
-      </div>
-    </div>
+        <div class=" col-4 zp bg-white position-relative" v-for="(item,index) of zp" :key="index">
+          <!-- 职位信息 -->
+          <a href="javascript:;">
+            <p class="d-flex justify-content-between postion">
+              {{item.name}}
+              <span class="pirce">{{item.min_wages}}k-{{item.max_wages}}k</span>
+            </p>
+            <p class="inf">
+              {{item.place}}
+              <span class="vline"></span>
+              {{item.experience}}
+              <span class="vline"></span>
+              {{item.education}}
+            </p>
+          </a>
+          <!-- 招聘者信息 -->
+          <div class="zpz d-flex align-items-center">
+            <img src="" alt="">
+            {{item.enterprise}}
+            <span>
+              {{item.fname}}
+              <span class="vline"></span>
+              {{item.postion}}
+            </span>
+          </div>
 
+        </div>
+
+      </div>
+    <!-- 查看更多 -->
+    <div class="zpcolor see">查看更多</div>
+    <!-- 热门企业 -->
+    
+      <div class="d-flex zap hy">
+        <p :class="span==0?'zpcolor':''" v-for="(item,span) of hot" :key="span">{{item}}</p>
+      </div>
+      <div class="row">
+
+        <div class="col-3 zp bg-white hot" v-for="(item,span) of hot_ex" :key="span">
+          <a href="javascript:;" class="d-flex justify-content-between d-block">
+            <img src="" alt="">
+            <div class=" text-right">
+              <p>{{item.name}}</p>
+              <span>
+                {{item.inv}}
+                <span class="vline"></span>
+                {{item.type}}
+              </span>
+            </div>
+          </a>
+
+          <div>
+            <span class="zpcolor">{{item.post}}</span>
+            个热招岗位
+            <span class="zpcolor">{{item.boss}}</span>
+            位BOSS在线
+          </div>
+
+        </div>
+
+      </div>
+    <!-- 查看更多 -->
+    <div class="zpcolor see">查看更多</div>
+    </div>
+    
   </div>
 </template>
 
@@ -78,9 +136,47 @@
 export default {
   data() {
     return {
-      industry:['IT·互联网','金融','房地产·建筑','教育培训','汽车','娱乐传媒','医疗健康','法律咨询']
+      industry:['IT·互联网','金融','房地产·建筑','教育培训','汽车','娱乐传媒','医疗健康','法律咨询'],
+      zpcolor:'',
+      zp:[
+        {name:'Java架构师',min_wages:'30',max_wages:'60',place:'上海',experience:'5-10年',education:'本科',enterprise:'京东集团',fname:'陈女士',postion:'招聘者'},
+        {name:'Java架构师',min_wages:'30',max_wages:'60',place:'上海',experience:'5-10年',education:'本科',enterprise:'京东集团',fname:'陈女士',postion:'招聘者'},
+        {name:'Java架构师',min_wages:'30',max_wages:'60',place:'上海',experience:'5-10年',education:'本科',enterprise:'京东集团',fname:'陈女士',postion:'招聘者'},
+        {name:'Java架构师',min_wages:'30',max_wages:'60',place:'上海',experience:'5-10年',education:'本科',enterprise:'京东集团',fname:'陈女士',postion:'招聘者'},
+        {name:'Java架构师',min_wages:'30',max_wages:'60',place:'上海',experience:'5-10年',education:'本科',enterprise:'京东集团',fname:'陈女士',postion:'招聘者'},
+        {name:'Java架构师',min_wages:'30',max_wages:'60',place:'上海',experience:'5-10年',education:'本科',enterprise:'京东集团',fname:'陈女士',postion:'招聘者'},
+        {name:'Java架构师',min_wages:'30',max_wages:'60',place:'上海',experience:'5-10年',education:'本科',enterprise:'京东集团',fname:'陈女士',postion:'招聘者'},
+        {name:'Java架构师',min_wages:'30',max_wages:'60',place:'上海',experience:'5-10年',education:'本科',enterprise:'京东集团',fname:'陈女士',postion:'招聘者'},
+        {name:'Java架构师',min_wages:'30',max_wages:'60',place:'上海',experience:'5-10年',education:'本科',enterprise:'京东集团',fname:'陈女士',postion:'招聘者'},
+      ],
+      hot:['热门企业','行业巨头','新锐公司','上市公司'],
+      hot_ex:[
+        {name:'当贝网络',inv:'A轮',type:'互联网',post:'2014',boss:'221'},
+        {name:'当贝网络',inv:'A轮',type:'互联网',post:'2014',boss:'221'},
+        {name:'当贝网络',inv:'A轮',type:'互联网',post:'2014',boss:'221'},
+        {name:'当贝网络',inv:'A轮',type:'互联网',post:'2014',boss:'221'},
+        {name:'当贝网络',inv:'A轮',type:'互联网',post:'2014',boss:'221'},
+        {name:'当贝网络',inv:'A轮',type:'互联网',post:'2014',boss:'221'},
+        {name:'当贝网络',inv:'A轮',type:'互联网',post:'2014',boss:'221'},
+        {name:'当贝网络',inv:'A轮',type:'互联网',post:'2014',boss:'221'},
+        {name:'当贝网络',inv:'A轮',type:'互联网',post:'2014',boss:'221'},
+        {name:'当贝网络',inv:'A轮',type:'互联网',post:'2014',boss:'221'},
+        {name:'当贝网络',inv:'A轮',type:'互联网',post:'2014',boss:'221'},
+        {name:'当贝网络',inv:'A轮',type:'互联网',post:'2014',boss:'221'},
+      ]
     }
   },
+  methods: {
+    color:function (num) {
+      if (num==1) {
+        this.zpcolor='zpcolor'
+      }else{
+        this.zpcolor=''
+      }
+    },
+    
+  },
+  
 }
 </script>
 
@@ -89,6 +185,9 @@ export default {
 /* 顶部 */
 .home-top>.container>img{
   height: 7.5rem;  
+}
+.home .row{
+  margin: 0;
 }
 .home-input{
   position: absolute;
@@ -208,11 +307,11 @@ export default {
 .search-hot a{
   margin-right: 1.375rem;
 }
-.zp{
+.hy{
 
   border-bottom:2px solid #00d7c6;
 }
-.zp p{
+.hy p{
   cursor: pointer;
   margin: 0;
   padding-right: 2.5rem;
@@ -220,5 +319,76 @@ export default {
   /* color: #8d92a1; */
   height: 3.75rem;
   line-height: 3.75rem;
+}
+
+.zp{
+  /* padding: 0 1.34375rem; */
+  border-right: solid 2px #f6f6f8;
+  border-bottom: solid 2px #f6f6f8;
+  font-size: 0.935rem;
+  color: #61687c;
+}
+.zp:hover{
+  box-shadow: 5px 5px 20px rgba(0,0,0,.05);
+  border-bottom-color: #eaebef;
+  border-left-color: #edeef2;
+  z-index: 99;
+}
+.zp>div{
+  cursor: pointer;
+}
+.zp p{
+  margin: 0;
+  padding: 0.5rem 0;
+}
+.zp a{
+  color: #61687c;
+}
+.pirce{
+  color: #fc6c38;
+}
+.inf{
+  font-size: 0.75rem;
+  border-bottom: 1px dashed #e3e7ed;
+  color: #61687c;
+}
+.zpz{
+  margin: 0.5rem 0;
+  color: #61687c;
+}
+.zpz img{
+ width: 1.875rem;
+ height: 1.875rem;
+ border-radius: 50%;
+ background: #f50;
+ margin-right: 1rem;
+}
+.zpz>span{
+  margin-left: 0.625rem;
+  font-size: 0.75rem;
+  color: #8d92a1;
+}
+/* 热门 */
+.hot>a{
+  padding: 1rem 0;
+  color: #000;
+  border-bottom: 1px dashed #ededed;
+}
+.hot img{
+  width: 3.4375rem;
+  height: 3.4375rem;
+  border-radius: 10px;
+  background: #f50;
+}
+.text-right span{
+  color: #61687c;
+  font-size: 0.75rem;
+}
+.hot>div{
+  font-size: 0.75rem;
+  padding: 0.5rem;
+}
+.hot>div>span:last-child{
+  margin-left: 1.3rem;
 }
 </style>
