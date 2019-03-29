@@ -174,12 +174,16 @@ export default {
 body{
   background: #f6f6f8 !important;
   color: #414a60;
+  padding: 0;margin: 0;
 }
 ul{
   list-style: none;
 }
 .zpcolor{
   color: #00d7c6 !important;
+}
+.zpback{
+  background: #5dd5c8;
 }
 a{
   transition:.5S;
