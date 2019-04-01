@@ -8,7 +8,7 @@
         </a>
 
         <!-- 位置定位 -->
-        <div class="nav-city">
+        <div class="nav-city" v-if='Path=="/"'>
           <i class="iconfont iconiconfontzhizuobiaozhun16 zpcolor"></i>
           <span class="zpcolor">厦门</span>
           <span class="text-white">[切换城市]</span>
@@ -22,7 +22,10 @@
           <li >APP</li>
           <li >咨询</li>
         </ul>
-
+        <div class="top-search text-white" v-if="Path!='/'">
+          <input type="text" placeholder="搜索职位、公司">
+          <i class="iconfont iconsearch-1-copy"></i>
+        </div>
         <!-- 登陆 -->
         <div class="index d-flex">
           <a href="javascript:;">上传简历</a>
@@ -33,7 +36,7 @@
         </div>
         
         <!-- 侧面导航栏 -->
-        <div class="sider-index" :class="scrollTop>0?'sider-top':''">
+        <div class="sider-index" :class="scrollTop>20?'sider-top':'sider-in'">
           <ul>
             <li>
               <a href="javascript:;" class="d-block text-center">
@@ -165,7 +168,8 @@ export default {
         {title:'企业服务',list:['职位搜索','新闻资讯','BOSS直娉APP']},
         {title:'使用与帮助',list:['用户协议与隐私政策','防骗指南','职位发布规则','使用帮助']},
       ],
-      scrollTop:0
+      scrollTop:0,
+      Path:''
     }
   },
   methods: {
@@ -182,7 +186,14 @@ export default {
           clearInterval(timer)
         }
       },25)
-    }
+    },
+    path:function () {
+      this.Path=this.$router.history.current.path
+      console.log(this.Path)
+   }
+  },
+  created() {
+     this.path()
   },
   mounted() {
     window.addEventListener('scroll',this.handleScroll)
@@ -229,8 +240,22 @@ ul{
 .zpback{
   background: #5dd5c8;
 }
+/* 灰色字 */
+.ashcolor{
+  color: rgba(255,255,255,.7);
+}
+/* 红色字 */
+.redcolor{
+  color: #fa6a43 !important;
+}
+/* 气泡边框 */
+.bubble{
+  border: 1px solid #00d7c6;
+  border-radius: 25px;
+  padding: 0.2rem 1rem;
+}
 a{
-  transition:.5S;
+  transition:.3S;
 }
 a:hover{
   text-decoration:none !important;
@@ -283,6 +308,22 @@ a:hover{
 .nav li:hover{
   color: #00d7c6;
 }
+/* 搜索框 */
+.top-search{
+  border-radius: 15px;
+  border: 1px solid #00d7c6;
+  width: 12rem;
+  margin-left: 1rem;
+}
+.top-search input{
+  color: #fff;
+  background: none;
+  border: none;
+  font-size: 0.75rem;
+  outline: none;
+  padding-left: 1rem;
+}
+
 .index{
   position: absolute;
   right: 0;
@@ -306,8 +347,8 @@ a:hover{
   right: 0;
   width: 3.75rem;
   z-index: 999;
-  top:49px;
-  transform: 1S
+  /* top:49px; */
+  transform: 0.5S
 }
 .sider-index ul{
   list-style: none;
@@ -324,7 +365,11 @@ a:hover{
 }
 .sider-top{
  top: 0;
- transition: 0.2S 
+ transition: 0.1S 
+}
+.sider-in{
+  top: 49px;  
+  transition: 0.1S 
 }
 .jiantou{
   margin-top: 8rem;

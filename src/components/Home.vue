@@ -12,7 +12,7 @@
             <input type="tel"  placeholder="输入手机号" class="form-input" maxlength="11" name="phone">
             <div class=" d-inline-block position-relative">
               <input type="text" placeholder="验证码" class="form-input " name="phoneCode" maxlength="6">
-              <a href="javascript:;" class=" zpcolor position-absolute">获取</a>
+              <routerLink to="" href="javascript:;" class=" zpcolor position-absolute">获取</routerLink>
             </div>
             <div class="btn-zp text-white border border-white">登陆/注册</div>
           </div>
@@ -44,20 +44,42 @@
         <!-- 热门职位 -->
         <div class="search-hot d-flex align-items-center">
           <b class="d-block">热门职位:</b>
-          <a href="javascript:;" class="zpcolor d-block">Java</a>
-          <a href="javascript:;" class="zpcolor d-block">Java</a>
-          <a href="javascript:;" class="zpcolor d-block">Java</a>
-          <a href="javascript:;" class="zpcolor d-block">Java</a>
-          <a href="javascript:;" class="zpcolor d-block">Java</a>
-          <a href="javascript:;" class="zpcolor d-block">Java</a>
-          <a href="javascript:;" class="zpcolor d-block">Java</a>
+          <routerLink to="" href="javascript:;" class="zpcolor d-block">Java</routerLink>
+          <routerLink to="" href="javascript:;" class="zpcolor d-block">Java</routerLink>
+          <routerLink to="" href="javascript:;" class="zpcolor d-block">Java</routerLink>
+          <routerLink to="" href="javascript:;" class="zpcolor d-block">Java</routerLink>
+          <routerLink to="" href="javascript:;" class="zpcolor d-block">Java</routerLink>
+          <routerLink to="" href="javascript:;" class="zpcolor d-block">Java</routerLink>
+          <routerLink to="" href="javascript:;" class="zpcolor d-block">Java</routerLink>
         </div>
 
       </div>
 
     </div>
+    <!-- 滚动条下滑弹出搜索框 -->
+    <div class="bg-white eject-search w-100"  :class="scrollTop>250?'enter':'out'">
+      <div class="container d-flex align-items-center h-100">
+        <img src="" class="hader_logo" alt="">
+        <div class="search-input d-flex">
+
+          <div class=" bg-white d-flex">
+            <div class="leabel">
+              <span>职位类型</span>
+              <i class="iconfont iconjiantou1"></i>
+            </div>  
+            <input type="text" class=" border-0" placeholder="搜索职位、公司">
+          </div>
+          
+          <div class="search-but zpback text-white">
+            搜索
+          </div>
+
+        </div>
+        
+      </div>
+    </div>
     <!-- 招聘信息 -->
-    <div class=" container">
+    <div class="container">
       <!-- 行业 -->
       <div class="d-flex zap hy">
         <p :class="span==0?'zpcolor':''" v-for="(item,span) of industry" :key="span">{{item}}</p>
@@ -66,7 +88,7 @@
       <div class="row">
         <div class=" col-4 zp bg-white position-relative" v-for="(item,index) of zp" :key="index">
           <!-- 职位信息 -->
-          <a href="javascript:;">
+          <routerLink to="" >
             <p class="d-flex justify-content-between postion">
               {{item.name}}
               <span class="pirce">{{item.min_wages}}k-{{item.max_wages}}k</span>
@@ -78,10 +100,10 @@
               <span class="vline"></span>
               {{item.education}}
             </p>
-          </a>
+          </routerLink>
           <!-- 招聘者信息 -->
           <div class="zpz d-flex align-items-center">
-            <img src="" alt="">
+            <img :src="item.img" alt="">
             {{item.enterprise}}
             <span>
               {{item.fname}}
@@ -103,7 +125,7 @@
       <div class="row">
 
         <div class="col-3 zp bg-white hot" v-for="(item,span) of hot_ex" :key="span">
-          <a href="javascript:;" class="d-flex justify-content-between d-block">
+          <routerLink to=""  class="d-flex justify-content-between d-block">
             <img src="" alt="">
             <div class=" text-right">
               <p>{{item.name}}</p>
@@ -113,7 +135,7 @@
                 {{item.type}}
               </span>
             </div>
-          </a>
+          </routerLink>
 
           <div>
             <span class="zpcolor">{{item.post}}</span>
@@ -133,21 +155,23 @@
 </template>
 
 <script>
+import global from './common.vue'
 export default {
   data() {
     return {
+      scrollTop:0,
       industry:['IT·互联网','金融','房地产·建筑','教育培训','汽车','娱乐传媒','医疗健康','法律咨询'],
       zpcolor:'',
       zp:[
-        {name:'Java架构师',min_wages:'30',max_wages:'60',place:'上海',experience:'5-10年',education:'本科',enterprise:'京东集团',fname:'陈女士',postion:'招聘者'},
-        {name:'Java架构师',min_wages:'30',max_wages:'60',place:'上海',experience:'5-10年',education:'本科',enterprise:'京东集团',fname:'陈女士',postion:'招聘者'},
-        {name:'Java架构师',min_wages:'30',max_wages:'60',place:'上海',experience:'5-10年',education:'本科',enterprise:'京东集团',fname:'陈女士',postion:'招聘者'},
-        {name:'Java架构师',min_wages:'30',max_wages:'60',place:'上海',experience:'5-10年',education:'本科',enterprise:'京东集团',fname:'陈女士',postion:'招聘者'},
-        {name:'Java架构师',min_wages:'30',max_wages:'60',place:'上海',experience:'5-10年',education:'本科',enterprise:'京东集团',fname:'陈女士',postion:'招聘者'},
-        {name:'Java架构师',min_wages:'30',max_wages:'60',place:'上海',experience:'5-10年',education:'本科',enterprise:'京东集团',fname:'陈女士',postion:'招聘者'},
-        {name:'Java架构师',min_wages:'30',max_wages:'60',place:'上海',experience:'5-10年',education:'本科',enterprise:'京东集团',fname:'陈女士',postion:'招聘者'},
-        {name:'Java架构师',min_wages:'30',max_wages:'60',place:'上海',experience:'5-10年',education:'本科',enterprise:'京东集团',fname:'陈女士',postion:'招聘者'},
-        {name:'Java架构师',min_wages:'30',max_wages:'60',place:'上海',experience:'5-10年',education:'本科',enterprise:'京东集团',fname:'陈女士',postion:'招聘者'},
+        {name:'Java架构师',min_wages:'30',max_wages:'60',place:'上海',experience:'5-10年',education:'本科',enterprise:'京东集团',img:'',fname:'陈女士',postion:'招聘者'},
+        {name:'Java架构师',min_wages:'30',max_wages:'60',place:'上海',experience:'5-10年',education:'本科',enterprise:'京东集团',img:'',fname:'陈女士',postion:'招聘者'},
+        {name:'Java架构师',min_wages:'30',max_wages:'60',place:'上海',experience:'5-10年',education:'本科',enterprise:'京东集团',img:'',fname:'陈女士',postion:'招聘者'},
+        {name:'Java架构师',min_wages:'30',max_wages:'60',place:'上海',experience:'5-10年',education:'本科',enterprise:'京东集团',img:'',fname:'陈女士',postion:'招聘者'},
+        {name:'Java架构师',min_wages:'30',max_wages:'60',place:'上海',experience:'5-10年',education:'本科',enterprise:'京东集团',img:'',fname:'陈女士',postion:'招聘者'},
+        {name:'Java架构师',min_wages:'30',max_wages:'60',place:'上海',experience:'5-10年',education:'本科',enterprise:'京东集团',img:'',fname:'陈女士',postion:'招聘者'},
+        {name:'Java架构师',min_wages:'30',max_wages:'60',place:'上海',experience:'5-10年',education:'本科',enterprise:'京东集团',img:'',fname:'陈女士',postion:'招聘者'},
+        {name:'Java架构师',min_wages:'30',max_wages:'60',place:'上海',experience:'5-10年',education:'本科',enterprise:'京东集团',img:'',fname:'陈女士',postion:'招聘者'},
+        {name:'Java架构师',min_wages:'30',max_wages:'60',place:'上海',experience:'5-10年',education:'本科',enterprise:'京东集团',img:'',fname:'陈女士',postion:'招聘者'},
       ],
       hot:['热门企业','行业巨头','新锐公司','上市公司'],
       hot_ex:[
@@ -174,7 +198,18 @@ export default {
         this.zpcolor=''
       }
     },
+   hand:function () {
+     global.handleScroll(this)
+   },
+   
+
+  },
+  created() {
+  
     
+  },
+  mounted() {
+    window.addEventListener('scroll',this.hand)
   },
   
 }
@@ -281,13 +316,13 @@ export default {
   font-weight: 400;
 }
 .search-input input{
-  width: 83.9%;
+  width: 81.9%;
   outline: none;
 }
 .search-but{
   width: 13.5%;
   text-align: center;
-  line-height: 250%;
+  line-height: 270%;
   cursor: pointer;
   transition: 0.3s;
 }
@@ -307,6 +342,29 @@ export default {
 .search-hot a{
   margin-right: 1.375rem;
 }
+/* 滚动条下滑弹出搜索框 */
+.eject-search{
+  position: fixed;
+  
+  left: 0;
+  height: 6.25rem;
+  z-index: 500;
+  transition: 2S
+}
+.eject-search img{
+  margin-right: 1rem;
+}
+.out{
+  /* display: none; */
+  top: -7rem;
+  transition: 0.3S
+}
+.enter{
+  /* display: block; */
+  top: 0;
+  transition: 0.3S
+}
+
 .hy{
 
   border-bottom:2px solid #00d7c6;
