@@ -22,10 +22,12 @@
           <li >APP</li>
           <li >咨询</li>
         </ul>
+
         <div class="top-search text-white" v-if="Path!='/'">
           <input type="text" placeholder="搜索职位、公司">
           <i class="iconfont iconsearch-1-copy"></i>
         </div>
+
         <!-- 登陆 -->
         <div class="index d-flex">
           <a href="javascript:;">上传简历</a>
@@ -204,8 +206,25 @@ export default {
 <style>
 body{
   background: #f6f6f8 !important;
-  color: #414a60;
+  color: #414a60 !important;
   padding: 0;margin: 0;
+  font-size: 14px !important;
+}
+/* 小标题 */
+.small-title{
+  margin-top: 1rem;
+  font-size: 0.9375rem;
+  font-weight: 700;
+}
+
+.small-title::after{
+  content: '';
+  display: block;
+  margin: 0.5rem 0;
+  width:1.5rem;
+  height: 2px;
+  background: #00d7c6;
+  border: 999px;
 }
 /* 查看更多 */
 .see{
