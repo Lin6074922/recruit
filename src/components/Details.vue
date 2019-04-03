@@ -195,14 +195,92 @@
           
           <div class="small-title">工作地址</div>
           <!-- 工作地址 -->
-          <div class="map" id="map">
+          <div>
+            <div class="map-tit"> 
+              <i class="iconfont iconiconfontzhizuobiaozhun16 pl-3"></i>
+              <span>侨米科技</span>
+            </div>
+            <!-- 地图 -->
+            <div class="map" id="map">
+            </div>
           </div>
+
+          <!-- 推荐职位 -->
+          <div>
+            <div class="pt-4 pb-4">推荐职位</div>
+            <div class="recommend position-relative">
+              <ul class="d-flex flex-wrap flex-column h-100 w-100 p-0 position-absolute" :style="'left:'+(l*-41)+'rem'">
+
+                <li class="pl-3 pr-3 mt-3" v-for="(item,index) of recommend" :key="index">
+                  <router-link to="">
+                    <p class="d-flex justify-content-between">
+                      <span>{{item.name}}</span>
+                      <span class="redcolor ">{{item.price}}</span>
+                    </p>
+                    <p class="small recolor pt-2">{{item.gs}}</p>
+                  </router-link>
+                </li>
+                
+              </ul>
+            </div>
+            <div class="tabbal text-center">
+              <span v-for="(item,index) of leng" :key="index" @mouseover="talbar(index)" :class="index==l?'zpback':''"></span>
+            </div>
+          </div>
+
+
         </div>
 
         
         <!-- 右侧 -->
         <div class="col-4">
-          1
+          <div class="company-details">
+            <p class="companyp">公司基本信息</p>
+            <div>
+              <img src="https://img.bosszhipin.com/beijin/mcs/chatphoto/20180130/4eef4a1cfe702a18b96855ac863ba54430a2ff552c77b931a3dd6f1ce1267649.jpg?x-oss-process=image/resize,w_120,limit_0" alt="">
+              <span>蚂蚁金服</span>
+            </div>
+            <div class="icon">
+              <i class="iconfont icontouzi-"></i>
+              <span class="pl-4">C轮</span>
+            </div>
+
+            <div class="icon">
+              <i class="iconfont iconrenyuan"></i>
+              <span class="pl-4">1000人</span>
+            </div>
+
+            <div class="icon">
+              <i class="iconfont icontype"></i>
+              <span class="pl-4">互联网</span>
+            </div>
+
+            <div class="icon">
+              <i class="iconfont icondalou3"></i>
+              <a href="https://www.baidu.com">
+                <span class="pl-4">https://www.baidu.com</span>
+              </a>
+            </div>
+
+          </div>
+
+          <!-- 相似职位 -->
+          <p class="companyp">相似职位</p>
+          <ul class="similar p-0">
+            <li v-for="(item,index) of similar" :key="index">
+              <img class=" float-right"  alt="">
+              <p>
+                <router-link to="">{{item.name}}</router-link>
+                <span class="redcolor pl-3">{{item.price}}</span>
+              </p>
+              <p class="recruiter-name">
+                {{item.company}}
+                <span class="pl-3 pr-3">·</span>
+                {{item.city}}
+              </p>
+            </li>
+          </ul>
+          <div class="see">查看更多相似职位</div>
         </div>
       </div>
     </div>
@@ -213,11 +291,58 @@
 // import BMap from 'BMap'
 import Tile from './common/title';
 import td from '../assets/td.png'
+import $ from 'jquery'
 export default {
   data() {
     return {
       welfare:['五险一金','补充医疗保险','定期体检','加班补助','年终奖','终奖','年终奖','年终奖','年终奖','年终奖','医疗','年终奖','医疗','年终奖','医疗','年终奖','医疗'],
       change:false,
+      recommend:[
+        {name:'高级测试工程师',price:'20K-40K',gs:'蚂蚁金服'},
+        {name:'高级测试工程师',price:'20K-40K',gs:'蚂蚁金服'},
+        {name:'高级测试工程师',price:'20K-40K',gs:'蚂蚁金服'},
+        {name:'高级测试工程师',price:'20K-40K',gs:'蚂蚁金服'},
+        {name:'高级测试工程师',price:'20K-40K',gs:'蚂蚁金服'},
+        {name:'高级测试工程师',price:'20K-40K',gs:'蚂蚁金服'},
+        {name:'高级测试工程师',price:'20K-40K',gs:'蚂蚁金服'},
+        {name:'高级测试工程师',price:'20K-40K',gs:'蚂蚁金服'},
+        {name:'高级测试工程师',price:'20K-40K',gs:'蚂蚁金服'},
+        {name:'高级测试工程师',price:'20K-40K',gs:'蚂蚁金服'},
+        {name:'高级测试工程师',price:'20K-40K',gs:'蚂蚁金服'},
+        {name:'高级测试工程师',price:'20K-40K',gs:'蚂蚁金服'},
+        {name:'高级测试工程师',price:'20K-40K',gs:'蚂蚁金服'},
+        {name:'高级测试工程师',price:'20K-40K',gs:'蚂蚁金服'},
+        {name:'高级测试工程师',price:'20K-40K',gs:'蚂蚁金服'},
+        {name:'高级测试工程师',price:'20K-40K',gs:'蚂蚁金服'},
+        {name:'高级测试工程师',price:'20K-40K',gs:'蚂蚁金服'},
+        {name:'高级测试工程师',price:'20K-40K',gs:'蚂蚁金服'},
+        {name:'高级测试工程师',price:'20K-40K',gs:'蚂蚁金服'},
+        {name:'高级测试工程师',price:'20K-40K',gs:'蚂蚁金服'},
+        {name:'高级测试工程师',price:'20K-40K',gs:'蚂蚁金服'},
+        {name:'高级测试工程师',price:'20K-40K',gs:'蚂蚁金服'},
+        {name:'高级测试工程师',price:'20K-40K',gs:'蚂蚁金服'},
+        {name:'高级测试工程师',price:'20K-40K',gs:'蚂蚁金服'},
+        {name:'高级测试工程师',price:'20K-40K',gs:'蚂蚁金服'},
+        {name:'高级测试工程师',price:'20K-40K',gs:'蚂蚁金服'},
+        {name:'高级测试工程师',price:'20K-40K',gs:'蚂蚁金服'},
+        {name:'高级测试工程师',price:'20K-40K',gs:'蚂蚁金服'},
+        {name:'高级测试工程师',price:'20K-40K',gs:'蚂蚁金服'},
+        {name:'高级测试工程师',price:'20K-40K',gs:'蚂蚁金服'},
+        {name:'高级测试工程师',price:'20K-40K',gs:'蚂蚁金服'},
+        {name:'高级测试工程师',price:'20K-40K',gs:'蚂蚁金服'},
+        {name:'高级测试工程师',price:'20K-40K',gs:'蚂蚁金服'},
+        {name:'高级测试工程师',price:'20K-40K',gs:'蚂蚁金服'},
+        {name:'高级测试工程师',price:'20K-40K',gs:'蚂蚁金服'},
+      ],
+      similar:[
+        {name:'增长专家',price:'20K-40K',company:'龙之力',city:'成都'},
+        {name:'增长专家',price:'20K-40K',company:'龙之力',city:'成都'},
+        {name:'增长专家',price:'20K-40K',company:'龙之力',city:'成都'},
+        {name:'增长专家',price:'20K-40K',company:'龙之力',city:'成都'},
+        {name:'增长专家',price:'20K-40K',company:'龙之力',city:'成都'},
+      ],
+      leng:5,
+      l:0
     }
   },
   components:{
@@ -227,6 +352,7 @@ export default {
     welFare:function(a){
       this.change=a
     },
+    // 添加地图
     createMap () {
       /* eslint-disable */
       // 创建Map实例
@@ -239,21 +365,34 @@ export default {
       map.centerAndZoom(new BMap.Point(118.071084,24.598597),16
       )
       //添加地图类型控件
-      map.addControl(new BMap.MapTypeControl({
-        mapTypes:[BMAP_NORMAL_MAP, BMAP_HYBRID_MAP]
-      }))
+      // map.addControl(new BMap.MapTypeControl({
+      //   mapTypes:[BMAP_NORMAL_MAP]
+      // }));
+      // map.addControl(new BMap.ScaleControl());
       // 设置地图显示的城市 此项是必须设置的
       map.setCurrentCity("厦门")
       //将标注添加到地图上
       map.addOverlay(new BMap.Marker(pt,{icon:myIcon})); 
       //开启鼠标滚轮缩放
-      map.enableScrollWheelZoom(false)
+      map.enableScrollWheelZoom(true);
       // 禁止鼠标拖动
-      map.disableDragging(); 
-    }
+      // map.disableDragging(); 
+      map.enableContinuousZoom(); 
+    },
+    talbar(index){
+      this.l=index
+    },
+    len(){
+      this.leng=Math.ceil(this.recommend.length/10)
+    },
+    
   },
+  created() {
+    this.welFare()
+    },
   mounted() {
-    this.createMap()
+    this.createMap();
+    this.len();
   },
 }
 </script>
@@ -369,11 +508,78 @@ flex-wrap: wrap;
  height: 14rem;
  position: relative;
 }
-.mapb{
-  position:absolute;
-  width: 100%;
-  height: 100%;
-  background: #3dccfc;
-  z-index: 10009999999999999999999;
+.map-tit{
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 0 10px rgba(0,0,0,.1);
+}
+/* 推荐职位 */
+.recommend{
+  border: 1px solid #f5f5f5;
+  height: 22.5rem;
+  overflow: hidden;
+}
+.recommend ul{
+  transition: 0.8S;
+}
+.recommend li{
+  width:50%;
+  height: 15%;
+  font-size: 0.9rem;
+}
+.recommend p{
+  margin: 0;
+}
+.recommend a{
+  color: #414a60;
+}
+.recolor{
+  color: #8d92a1
+}
+
+.tabbal{
+  border: 1px solid #f5f5f5;
+  border-top: none;
+}
+.tabbal span{
+  display:inline-block;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  border: 1px solid #5dd5c8;
+  margin: 0 0.3rem;
+  margin-top: 0.3rem;
+  transition: 0.3S;
+}
+.tabbal span:hover{
+  background-color: #5dd5c8;
+}
+.companyp{
+  font-size: 1.125rem;
+  color: #414a60;
+}
+.company-details img{
+  height: 3.75rem;
+  padding-right:1rem;
+}
+.icon{
+  margin: 1rem 0;
+}
+.icon a{
+  color: #414a60;
+}
+.similar{
+  font-size: 1rem;
+  border-bottom: 1px solid #f5f5f5;
+}
+.similar img{
+  width: 3.75rem;
+  height: 3.75rem;
+  background: #85e3f4;
+  border-radius: 10px;
+}
+.similar a{
+  color: #414a60;
 }
 </style>
