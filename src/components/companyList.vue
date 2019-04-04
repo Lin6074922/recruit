@@ -6,7 +6,7 @@
 				<div class="items"><a href="" v-for="navItem in navs.navArr" :key="navItem">{{navItem}}</a></div>
 			</div>
 		</div>
-		<div class="selected selectedFixed">
+		<div class="selected ">
 			<div class="fixed"> 
 				<span id="span0" style="color:#000">根据求职期望</span>
 			    <span id="span">{{selectedObj.city}}</span>|
@@ -20,7 +20,8 @@
 			<ul>
 				<li v-for="company in companyDataArr" :key="company">
 					<a href="">
-						<img :src="company.img"/>
+						<!-- <img :src="company.img"> -->
+                        <img :src="company.img" alt="">
 					    <h4>{{company.companyName}}</h4>
 					    <p id="p1">{{company.nature}} | {{company.type}}</p>					    
 					</a>
@@ -30,7 +31,7 @@
 		</div>
 		<div class="pages">
 			<div class="pageItem">
-				<a href="javascript:void(0);" @click="pagination(preIndex)" class="preA"><</a>
+				<a href="javascript:void(0);" @click="pagination(preIndex)" class="preA">&lt;</a>
 				<a href="javascript:void(0);" @click="pagination(n)" v-for="n in pageIndex" :key="n">{{n}}</a>
 				<a href="javascript:void(0);"  @click="pagination(backIndex)" class="preA">></a>
 			</div>
@@ -47,9 +48,9 @@
 </template>
 
 <script>
-import '../../public/css/companyList.css'
-// import '../../public/js/companyList.js'
 import $ from 'jquery'
+// import {realconsole} from '../../public/js/companyList.js'
+
 export default {
   data() {
     return {
@@ -65,7 +66,8 @@ export default {
 				],
 				pageIndex:1,
 				preIndex:null,
-				backIndex:null,
+                backIndex:null,
+                
     }
   },
   			methods:{
@@ -83,35 +85,46 @@ export default {
 				    // 筛选所需要的条件，对象
 					this.selectedObj={city:'厦门',jobName:'web前端',salary:'6K-8k',number:28};
 					// 公司简介列表数据
-					this.companyArr=[{img:'./images/companyHeadImg.jpg',companyName:'网宿科技',nature:'已上市',type:'互联网',jobName:'前端开发',salary:'11K-15K'},
-				    {img:'./images/companyHeadImg.jpg',companyName:'网宿科技',nature:'已上市',type:'互联网',jobName:'前端开发',salary:'11K-15K'},
-				    {img:'./images/companyHeadImg.jpg',companyName:'网宿科技',nature:'已上市',type:'互联网',jobName:'前端开发',salary:'11K-15K'},
-				    {img:'./images/companyHeadImg.jpg',companyName:'网宿科技',nature:'已上市',type:'互联网',jobName:'前端开发',salary:'11K-15K'},
-				    {img:'./images/companyHeadImg1.jpg',companyName:'网宿科技',nature:'已上市',type:'互联网',jobName:'前端开发',salary:'11K-15K'},
-				    {img:'./images/companyHeadImg1.jpg',companyName:'网宿科技',nature:'已上市',type:'互联网',jobName:'前端开发',salary:'11K-15K'},
-				    {img:'./images/companyHeadImg1.jpg',companyName:'网宿科技',nature:'已上市',type:'互联网',jobName:'前端开发',salary:'11K-15K'},
-				    {img:'./images/companyHeadImg1.jpg',companyName:'网宿科技',nature:'已上市',type:'互联网',jobName:'前端开发',salary:'11K-15K'},
-				    {img:'./images/companyHeadImg1.jpg',companyName:'网宿科技',nature:'已上市',type:'互联网',jobName:'前端开发',salary:'11K-15K'},
-				    {img:'./images/companyHeadImg1.jpg',companyName:'网宿科技',nature:'已上市',type:'互联网',jobName:'前端开发',salary:'11K-15K'},
-				    {img:'./images/companyHeadImg2.jpg',companyName:'网宿科技',nature:'已上市',type:'互联网',jobName:'前端开发',salary:'11K-15K'},
-				    {img:'./images/companyHeadImg2.jpg',companyName:'网宿科技',nature:'已上市',type:'互联网',jobName:'前端开发',salary:'11K-15K'},
-				    {img:'./images/companyHeadImg2.jpg',companyName:'网宿科技',nature:'已上市',type:'互联网',jobName:'前端开发',salary:'11K-15K'},
-				    {img:'./images/companyHeadImg2.jpg',companyName:'网宿科技',nature:'已上市',type:'互联网',jobName:'前端开发',salary:'11K-15K'},
-				    {img:'./images/companyHeadImg2.jpg',companyName:'网宿科技',nature:'已上市',type:'互联网',jobName:'前端开发',salary:'11K-15K'},
-				    {img:'./images/companyHeadImg3.jpg',companyName:'网宿科技',nature:'已上市',type:'互联网',jobName:'前端开发',salary:'11K-15K'},
-				    {img:'./images/companyHeadImg3.jpg',companyName:'网宿科技',nature:'已上市',type:'互联网',jobName:'前端开发',salary:'11K-15K'},
-				    {img:'./images/companyHeadImg3.jpg',companyName:'网宿科技',nature:'已上市',type:'互联网',jobName:'前端开发',salary:'11K-15K'},
-				    {img:'./images/companyHeadImg3.jpg',companyName:'网宿科技',nature:'已上市',type:'互联网',jobName:'前端开发',salary:'11K-15K'},
-				    {img:'./images/companyHeadImg3.jpg',companyName:'网宿科技',nature:'已上市',type:'互联网',jobName:'前端开发',salary:'11K-15K'},
-				    {img:'./images/companyHeadImg3.jpg',companyName:'网宿科技',nature:'已上市',type:'互联网',jobName:'前端开发',salary:'11K-15K'},
-				    {img:'./images/companyHeadImg2.jpg',companyName:'网宿科技',nature:'已上市',type:'互联网',jobName:'前端开发',salary:'11K-15K'},
-				    {img:'./images/companyHeadImg2.jpg',companyName:'网宿科技',nature:'已上市',type:'互联网',jobName:'前端开发',salary:'11K-15K'},
-				    {img:'./images/companyHeadImg2.jpg',companyName:'网宿科技',nature:'已上市',type:'互联网',jobName:'前端开发',salary:'11K-15K'},
-				    {img:'./images/companyHeadImg2.jpg',companyName:'网宿科技',nature:'已上市',type:'互联网',jobName:'前端开发',salary:'11K-15K'},
-				    {img:'./images/companyHeadImg2.jpg',companyName:'网宿科技',nature:'已上市',type:'互联网',jobName:'前端开发',salary:'11K-15K'},
-				    {img:'./images/companyHeadImg3.jpg',companyName:'网宿科技',nature:'已上市',type:'互联网',jobName:'前端开发',salary:'11K-15K'},
-				    {img:'./images/companyHeadImg3.jpg',companyName:'网宿科技',nature:'已上市',type:'互联网',jobName:'前端开发',salary:'11K-15K'},
-				    {img:'./images/companyHeadImg3.jpg',companyName:'网宿科技',nature:'已上市',type:'互联网',jobName:'前端开发',salary:'11K-15K'},];
+					this.companyArr=[{img:require('../assets/companyHeadImg.jpg'),companyName:'网宿科技',nature:'已上市',type:'互联网',jobName:'前端开发',salary:'11K-15K'},
+				    {img:require('../assets/companyHeadImg.jpg'),companyName:'网宿科技',nature:'已上市',type:'互联网',jobName:'前端开发',salary:'11K-15K'},
+				    {img:require('../assets/companyHeadImg.jpg'),companyName:'网宿科技',nature:'已上市',type:'互联网',jobName:'前端开发',salary:'11K-15K'},
+				    {img:require('../assets/companyHeadImg.jpg'),companyName:'网宿科技',nature:'已上市',type:'互联网',jobName:'前端开发',salary:'11K-15K'},
+				    {img:require('../assets/companyHeadImg1.png'),companyName:'网宿科技',nature:'已上市',type:'互联网',jobName:'前端开发',salary:'11K-15K'},
+				    {img:require('../assets/companyHeadImg1.png'),companyName:'网宿科技',nature:'已上市',type:'互联网',jobName:'前端开发',salary:'11K-15K'},
+				    {img:require('../assets/companyHeadImg1.png'),companyName:'网宿科技',nature:'已上市',type:'互联网',jobName:'前端开发',salary:'11K-15K'},
+				    {img:require('../assets/companyHeadImg1.png'),companyName:'网宿科技',nature:'已上市',type:'互联网',jobName:'前端开发',salary:'11K-15K'},
+				    {img:require('../assets/companyHeadImg1.png'),companyName:'网宿科技',nature:'已上市',type:'互联网',jobName:'前端开发',salary:'11K-15K'},
+				    {img:require('../assets/companyHeadImg1.png'),companyName:'网宿科技',nature:'已上市',type:'互联网',jobName:'前端开发',salary:'11K-15K'},
+				    {img:require('../assets/companyHeadImg2.jpg'),companyName:'网宿科技',nature:'已上市',type:'互联网',jobName:'前端开发',salary:'11K-15K'},
+				    {img:require('../assets/companyHeadImg2.jpg'),companyName:'网宿科技',nature:'已上市',type:'互联网',jobName:'前端开发',salary:'11K-15K'},
+				    {img:require('../assets/companyHeadImg2.jpg'),companyName:'网宿科技',nature:'已上市',type:'互联网',jobName:'前端开发',salary:'11K-15K'},
+				    {img:require('../assets/companyHeadImg2.jpg'),companyName:'网宿科技',nature:'已上市',type:'互联网',jobName:'前端开发',salary:'11K-15K'},
+				    {img:require('../assets/companyHeadImg2.jpg'),companyName:'网宿科技',nature:'已上市',type:'互联网',jobName:'前端开发',salary:'11K-15K'},
+				    {img:require('../assets/companyHeadImg3.jpg'),companyName:'网宿科技',nature:'已上市',type:'互联网',jobName:'前端开发',salary:'11K-15K'},
+				    {img:require('../assets/companyHeadImg3.jpg'),companyName:'网宿科技',nature:'已上市',type:'互联网',jobName:'前端开发',salary:'11K-15K'},
+				    {img:require('../assets/companyHeadImg3.jpg'),companyName:'网宿科技',nature:'已上市',type:'互联网',jobName:'前端开发',salary:'11K-15K'},
+				    {img:require('../assets/companyHeadImg3.jpg'),companyName:'网宿科技',nature:'已上市',type:'互联网',jobName:'前端开发',salary:'11K-15K'},
+				    {img:require('../assets/companyHeadImg3.jpg'),companyName:'网宿科技',nature:'已上市',type:'互联网',jobName:'前端开发',salary:'11K-15K'},
+				    {img:require('../assets/companyHeadImg3.jpg'),companyName:'网宿科技',nature:'已上市',type:'互联网',jobName:'前端开发',salary:'11K-15K'},
+				    {img:require('../assets/companyHeadImg2.jpg'),companyName:'网宿科技',nature:'已上市',type:'互联网',jobName:'前端开发',salary:'11K-15K'},
+				    {img:require('../assets/companyHeadImg2.jpg'),companyName:'网宿科技',nature:'已上市',type:'互联网',jobName:'前端开发',salary:'11K-15K'},
+				    {img:require('../assets/companyHeadImg2.jpg'),companyName:'网宿科技',nature:'已上市',type:'互联网',jobName:'前端开发',salary:'11K-15K'},
+				    {img:require('../assets/companyHeadImg2.jpg'),companyName:'网宿科技',nature:'已上市',type:'互联网',jobName:'前端开发',salary:'11K-15K'},
+				    {img:require('../assets/companyHeadImg2.jpg'),companyName:'网宿科技',nature:'已上市',type:'互联网',jobName:'前端开发',salary:'11K-15K'},
+				    {img:require('../assets/companyHeadImg3.jpg'),companyName:'网宿科技',nature:'已上市',type:'互联网',jobName:'前端开发',salary:'11K-15K'},
+				    {img:require('../assets/companyHeadImg3.jpg'),companyName:'网宿科技',nature:'已上市',type:'互联网',jobName:'前端开发',salary:'11K-15K'},
+                    {img:require('../assets/companyHeadImg3.jpg'),companyName:'网宿科技',nature:'已上市',type:'互联网',jobName:'前端开发',salary:'11K-15K'},
+                    {img:require('../assets/companyHeadImg2.jpg'),companyName:'网宿科技',nature:'已上市',type:'互联网',jobName:'前端开发',salary:'11K-15K'},
+				    {img:require('../assets/companyHeadImg2.jpg'),companyName:'网宿科技',nature:'已上市',type:'互联网',jobName:'前端开发',salary:'11K-15K'},
+				    {img:require('../assets/companyHeadImg3.jpg'),companyName:'网宿科技',nature:'已上市',type:'互联网',jobName:'前端开发',salary:'11K-15K'},
+				    {img:require('../assets/companyHeadImg3.jpg'),companyName:'网宿科技',nature:'已上市',type:'互联网',jobName:'前端开发',salary:'11K-15K'},
+                    {img:require('../assets/companyHeadImg3.jpg'),companyName:'网宿科技',nature:'已上市',type:'互联网',jobName:'前端开发',salary:'11K-15K'},
+                    {img:require('../assets/companyHeadImg2.jpg'),companyName:'网宿科技',nature:'已上市',type:'互联网',jobName:'前端开发',salary:'11K-15K'},
+				    {img:require('../assets/companyHeadImg2.jpg'),companyName:'网宿科技',nature:'已上市',type:'互联网',jobName:'前端开发',salary:'11K-15K'},
+				    {img:require('../assets/companyHeadImg3.jpg'),companyName:'网宿科技',nature:'已上市',type:'互联网',jobName:'前端开发',salary:'11K-15K'},
+				    {img:require('../assets/companyHeadImg3.jpg'),companyName:'网宿科技',nature:'已上市',type:'互联网',jobName:'前端开发',salary:'11K-15K'},
+                    {img:require('../assets/companyHeadImg3.jpg'),companyName:'网宿科技',nature:'已上市',type:'互联网',jobName:'前端开发',salary:'11K-15K'},
+                    ];
 				},
 				pagination:function(index){
 					this.companyDataArr=[];
@@ -126,33 +139,277 @@ export default {
 						this.backIndex=this.pageIndex;
 					}				
 					for (var i=0;i<this.companyArr.length;i++){
-						if(Math.ceil((i+1)/12)==index){
+						if(Math.ceil((i+1)/16)==index){
 							this.companyDataArr.push(this.companyArr[i]);
 						}else{
 						}						
 					}
-				}
+				},
 			},
       created(){
 				this.db_getAllArrData();
-				this.pageIndex=Math.ceil(this.companyArr.length/12);
-        this.pagination(1)
+				this.pageIndex=Math.ceil(this.companyArr.length/16);
+				this.pagination(1)
+				// this.ac()
         $(document).ready(function(){
         var scrollHeight=$('.selected').offset().top;
-        console.log(scrollHeight);
+        // console.log(scrollHeight);
         $(window).scroll(function() { 
-        console.log($(window).scrollTop()); 
+        // console.log($(window).scrollTop()); 
             if($(window).scrollTop()>scrollHeight){
               $('.selected').addClass('selectedFixed');
             }else{
               $('.selected').removeClass('selectedFixed');       	
             }
-    })	
-})
+						})	
+				})
+				
 			}
 }
 </script>
 
-<style >
-  
+<style scoped>
+*{
+	margin:0;
+	padding: 0;
+	list-style:none;
+}
+.box{
+	width:100%;
+	height:100%;
+	background: #F6F6F8;
+}
+a{
+	text-decoration:none;
+	color:#000;
+}
+.box .header{
+	width: 1000px;
+    margin: 0 auto;
+    padding: 10px 22px 30px 22px;
+    background-color: #fff;
+}
+.box .header .navs{
+	clear:both;
+	margin-top:20px;
+	font-size:13px;
+}
+.box .header span{
+	float: left;
+    width: 70px;
+    color: #414a60;
+}
+.box .header .items{
+	display: block;
+    width: calc(100% - 70px);
+    margin-left: 70px;
+    font-size: 13px;
+}
+.header .navs .items a:first-child{
+	color:#00c2b3;
+}
+.header .items a{
+	display: inline-block;
+    margin-right: 6px;
+    padding:5px 8px;
+    color: #61687c;
+}
+.header .items a:hover{
+	color:#00c2b3;
+}
+.selected{
+	width: 1000px;
+    height: 44px;
+    margin:0 auto;
+    line-height:44px;
+    padding: 0 22px;
+    background-color: #fff;
+    font-size: 12px;
+    color:#53cac3;
+}
+.selectedFixed{
+    width:100%;
+    background: #fff;
+    position:fixed;
+    top:0;
+    left:0;
+    /*left:calc(50% - 500px);*/
+}
+.selectedFixed .fixed{
+    width:1000px;
+    margin:0 auto;
+}
+.selected #span0{
+	display: inline-block;
+    cursor: pointer;
+    position: relative;
+    min-height: 18px;
+}
+.selected #span0:before{
+    content: "\2714";
+    background-color: #53cac3;
+    width: 12px;
+    height: 12px;
+    border: 0;
+    background-position: -48px -144px;
+    border-color: #53cac3;
+    color: #fff;
+    margin-right:8px;
+}
+.selected #span0:after{
+	content: "";
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    display: inline-block;
+    vertical-align: sub;
+    z-index: 1;
+    left: -4px;
+    margin-top: 1px;
+    border-radius: 50%;
+}
+.selected #span{
+	margin:0 10px;
+}
+.selected #number{
+    float: right;
+    height: 44px;
+    line-height: 44px;
+    color: #8d92a1;	
+}
+.companyContent{
+	width: 1000px;
+    margin: 0 auto;
+}
+.companyContent ul{
+	  height: auto;
+    overflow: hidden;
+}
+.companyContent ul li{
+    height: 140px;
+    width: 24.8%;
+    float: left;
+    background:#fff;
+    margin-right:0.2%;
+    font-size:13px;
+    margin-top:3px;
+}
+.companyContent ul li:hover{
+	box-shadow: 0 2px 8px rgba(0,0,0,.1);
+}
+
+.companyContent ul li a{
+	width: 206px;
+    height: 94px;
+    margin: 0 auto 0 auto;
+    padding-top: 20px;
+    border-bottom: dashed 1px #ededed;
+    color: #414a60;
+    display: block;
+}
+.companyContent ul li img{
+	height: 55px;
+    width: 55px;
+    float: left;
+    border-radius: 10px;
+    border: solid 1px #f2f5fa;
+}
+.companyContent ul li h4{
+	height: 25px;
+    line-height: 25px;
+    font-size: 16px;
+    font-weight: 400;
+    white-space: nowrap;
+    overflow: hidden;
+    text-align:right;
+    text-overflow: ellipsis;
+}
+.companyContent ul li #p1{
+	  height: 40px;
+    line-height: 41px;
+    color: #898e9d;
+    font-size: 12px;
+    /*display: inline-block;*/
+    white-space: nowrap;
+    text-align:right;
+}
+.companyContent ul li #p2{
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 205px;
+    margin: 0 auto;
+    color: #8d92a1;
+    line-height: 42px;
+    font-size: 12px;
+}
+.companyContent ul li p span{
+	    color: #00c2b3;
+    text-decoration: none;
+    display: inline-block;
+    vertical-align: top;
+    max-width: 100px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+/*分页布局*/
+.pages{
+    width:1000px;
+    margin:0 auto;
+    padding-top:7px;
+    height:50px;
+    background: #fff;
+    text-align: center;
+    margin-top:10px;
+}
+.pages .pageItem{
+    min-width:100px;
+    margin-top:10px;
+    margin-left:28%;
+}
+.pages .pageItem a{
+    float:left;
+    min-width: 28px;
+    height: 24px;
+    line-height: 24px;
+    margin: 0 10px;
+    text-align: center;
+    background: #fff;
+    border: 1px solid #fff;
+    vertical-align: middle;
+}
+.pages .pageItem .preA{
+    border:1px solid #e8e9ed;
+}
+.footNav{
+    margin-top:6px;
+    width:100%;
+    clear:both;
+    height:auto;
+    font-size:12px;
+}
+.footNav .cityRecord{
+    width:1000px;
+    margin:0 auto;
+}
+.footNav .cityRecord h4{
+    clear:both;
+    color: #4a4e52;
+    font-size: 15px;
+    line-height:40px;
+    width:100%;
+}
+.footNav .cityRecord a{
+    color: #9fa3b0;
+    font-size: 12px;
+    margin-right: 26px;
+    display: inline-block;
+    padding:0;
+    line-height:26px;
+}
+.footNav .cityRecord a:hover{
+    color:#000;
+    text-decoration:underline; 
+}
 </style>

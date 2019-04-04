@@ -397,7 +397,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .details{
   background-color: #fff;
 }
@@ -443,14 +443,7 @@ flex-wrap: wrap;
   color: #9fa3af;
   font-size: 0.875rem !important;
 }
-.introduce{
-  font-size: 0.875rem;
-  color: #61687c;
-  line-height: 36px;
-}
-.introduce span{
-  display: block;
-}
+
 .compete{
   font-size: 0.875rem;
   color: #51586d;

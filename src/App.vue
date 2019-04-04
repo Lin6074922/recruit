@@ -10,8 +10,28 @@
         <!-- 位置定位 -->
         <div class="nav-city" v-if='Path=="/"'>
           <i class="iconfont iconiconfontzhizuobiaozhun16 zpcolor"></i>
-          <span class="zpcolor">厦门</span>
-          <span class="text-white">[切换城市]</span>
+          <span class="zpcolor">{{city}}</span>
+          <span class="text-white position-relative" @mouseover="openCity(true)" @mouseout="openCity(false)">
+            [切换城市]
+            <!-- 城市列表 -->
+            <div class=" position-absolute city" :class="open?'d-block':'d-none'">
+              <ul class="city_list">
+                <!-- 省份 -->
+                <li class="province_list" @mouseover="getcity(index)" v-for="(item,index) of province" :key="index">
+                  {{item.name}}
+                  <ul class=" position-absolute city_ul city_list" :style="lever==index?'z-index:1009':'z-index:0'">
+                    <!-- 城市 -->
+                    <li v-for="(list,index) of item.city" :key="index" @click="setCity(list)">
+                      {{list}}
+                    </li>
+                    
+                  </ul>
+                </li>
+                
+              </ul>
+            </div>
+
+          </span>
         </div>
 
         <!-- 导航 -->
@@ -170,8 +190,21 @@ export default {
         {title:'企业服务',list:['职位搜索','新闻资讯','BOSS直娉APP']},
         {title:'使用与帮助',list:['用户协议与隐私政策','防骗指南','职位发布规则','使用帮助']},
       ],
+      province:[
+        {name:'北京',city:['北京']},
+        {name:'上海',city:['上海']},
+        {name:'天津',city:['天津']},
+        {name:'重庆',city:['重庆']},
+        {name:'黑龙江',city:['哈尔滨','齐齐格尔','牡丹江','佳木斯','黑河']},
+        {name:'吉林',city:['长春','吉林','四平','通话','白城','辽源','白山']},
+        {name:'福建',city:['福州','宁德','莆田','泉州','漳州','龙岩','三明','厦门','南平']},
+        {name:'江西',city:['上饶','抚州','宜春','吉安','赣州','景德镇','萍乡','新余','鹰潭']},
+      ],
+      city:'厦门',
       scrollTop:0,
-      Path:''
+      Path:'',
+      lever:0,
+      open:false,
     }
   },
   methods: {
@@ -179,10 +212,24 @@ export default {
       this.scrollTop = document.documentElement.scrollTop
       // console.log(this.scrollTop)
     },
+    // 打开切换城市
+    openCity(a){
+      this.open=a
+      
+    },
+    // 获取城市
+    getcity:function(index){
+      this.lever=index
+      // console.log(this.lever)
+    },
+    // 选取城市
+    setCity(a){
+      this.city=a
+    },
     // 返回顶部
     gotop:function () {
       var timer=setInterval(()=>{
-        var isSpeed=Math.floor(-this.scrollTop/5);
+        var isSpeed=Math.floor(-this.scrollTop/10);
         document.body.scrollTop=document.documentElement.scrollTop=this.scrollTop+isSpeed;
         if(this.scrollTop<=0){
           clearInterval(timer)
@@ -191,23 +238,25 @@ export default {
     },
     path:function () {
       this.Path=this.$router.history.current.path
-      console.log(this.Path)
    }
   },
   created() {
      this.path()
   },
   mounted() {
-    window.addEventListener('scroll',this.handleScroll)
+    window.addEventListener('scroll',this.handleScroll);
+    
   },
 }
 </script>
 
 <style>
+*{
+  padding: 0;margin: 0;
+}
 body{
   background: #f6f6f8 !important;
   color: #414a60 !important;
-  padding: 0;margin: 0;
   font-size: 14px !important;
 }
 /* 小标题 */
@@ -273,6 +322,15 @@ ul{
   border-radius: 25px;
   padding: 0.2rem 1rem;
 }
+/* 详情页主体 */
+.introduce{
+  font-size: 0.875rem;
+  color: #61687c;
+  line-height: 36px;
+}
+.introduce span{
+  display: block;
+}
 a{
   transition:.3S;
 }
@@ -306,6 +364,7 @@ a:hover{
   cursor:pointer;
   display: flex;
   align-items: center;
+  height: 100%;
 }
 .nav-city>i{
   margin-left: 0.75rem;
@@ -314,6 +373,40 @@ a:hover{
 .nav-city span:last-child{
   margin-left: 0.625rem;
   font-size: 0.75rem;
+  padding: 1rem 0;
+}
+.city{
+  z-index: 999;
+  left: -5rem;
+  top: 3.1rem;
+}
+.city_list{
+  background-color: #fff;
+  color: #414a60;
+  width: 8.75rem;
+  font-size: 0.8rem;
+  height: 14rem;
+  overflow: auto;
+  margin: 0;
+}
+.city_list::-webkit-scrollbar{
+  width: 5px;
+}
+.city_list::-webkit-scrollbar-thumb{
+  border-radius: 15px;
+  background: #9fa3b0;
+}
+.city_list li{
+  padding: 0.8rem 1rem;
+}
+.city_list li:hover{
+  background: rgba(000,000,000,.1);
+  /* opacity: 0.1; */
+}
+.city_ul{
+  left: 8.774rem;
+  top: 0;
+  width: 100%;
 }
 .nav{
   margin-left: 0.9375rem;
@@ -410,6 +503,7 @@ a:hover{
   background: #fff;
   padding-top: 1.875rem;
   padding-bottom: 0.625rem;
+  border-top: 1px solid #e0e0e0;
 }
 .footer ul{
   padding-right: 0;

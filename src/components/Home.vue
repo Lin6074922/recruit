@@ -154,7 +154,7 @@
   </div>
 </template>
 
-<script>
+<script >
 import global from './common.vue'
 export default {
   data() {
@@ -163,15 +163,15 @@ export default {
       industry:['IT·互联网','金融','房地产·建筑','教育培训','汽车','娱乐传媒','医疗健康','法律咨询'],
       zpcolor:'',
       zp:[
-        {name:'Java架构师',min_wages:'30',max_wages:'60',place:'上海',experience:'5-10年',education:'本科',enterprise:'京东集团',img:'',fname:'陈女士',postion:'招聘者'},
-        {name:'Java架构师',min_wages:'30',max_wages:'60',place:'上海',experience:'5-10年',education:'本科',enterprise:'京东集团',img:'',fname:'陈女士',postion:'招聘者'},
-        {name:'Java架构师',min_wages:'30',max_wages:'60',place:'上海',experience:'5-10年',education:'本科',enterprise:'京东集团',img:'',fname:'陈女士',postion:'招聘者'},
-        {name:'Java架构师',min_wages:'30',max_wages:'60',place:'上海',experience:'5-10年',education:'本科',enterprise:'京东集团',img:'',fname:'陈女士',postion:'招聘者'},
-        {name:'Java架构师',min_wages:'30',max_wages:'60',place:'上海',experience:'5-10年',education:'本科',enterprise:'京东集团',img:'',fname:'陈女士',postion:'招聘者'},
-        {name:'Java架构师',min_wages:'30',max_wages:'60',place:'上海',experience:'5-10年',education:'本科',enterprise:'京东集团',img:'',fname:'陈女士',postion:'招聘者'},
-        {name:'Java架构师',min_wages:'30',max_wages:'60',place:'上海',experience:'5-10年',education:'本科',enterprise:'京东集团',img:'',fname:'陈女士',postion:'招聘者'},
-        {name:'Java架构师',min_wages:'30',max_wages:'60',place:'上海',experience:'5-10年',education:'本科',enterprise:'京东集团',img:'',fname:'陈女士',postion:'招聘者'},
-        {name:'Java架构师',min_wages:'30',max_wages:'60',place:'上海',experience:'5-10年',education:'本科',enterprise:'京东集团',img:'',fname:'陈女士',postion:'招聘者'},
+        {name:'Java架构师',min_wages:'30',max_wages:'60',place:'上海',experience:'5-10年',education:'本科',enterprise:'京东集团',img:require('../assets/companyHeadImg2.jpg'),fname:'陈女士',postion:'招聘者'},
+        {name:'Java架构师',min_wages:'30',max_wages:'60',place:'上海',experience:'5-10年',education:'本科',enterprise:'京东集团',img:require('../assets/companyHeadImg.jpg'),fname:'陈女士',postion:'招聘者'},
+        {name:'Java架构师',min_wages:'30',max_wages:'60',place:'上海',experience:'5-10年',education:'本科',enterprise:'京东集团',img:require('../assets/companyHeadImg2.jpg'),fname:'陈女士',postion:'招聘者'},
+        {name:'Java架构师',min_wages:'30',max_wages:'60',place:'上海',experience:'5-10年',education:'本科',enterprise:'京东集团',img:require('../assets/companyHeadImg.jpg'),fname:'陈女士',postion:'招聘者'},
+        {name:'Java架构师',min_wages:'30',max_wages:'60',place:'上海',experience:'5-10年',education:'本科',enterprise:'京东集团',img:require('../assets/companyHeadImg2.jpg'),fname:'陈女士',postion:'招聘者'},
+        {name:'Java架构师',min_wages:'30',max_wages:'60',place:'上海',experience:'5-10年',education:'本科',enterprise:'京东集团',img:require('../assets/companyHeadImg.jpg'),fname:'陈女士',postion:'招聘者'},
+        {name:'Java架构师',min_wages:'30',max_wages:'60',place:'上海',experience:'5-10年',education:'本科',enterprise:'京东集团',img:require('../assets/companyHeadImg2.jpg'),fname:'陈女士',postion:'招聘者'},
+        {name:'Java架构师',min_wages:'30',max_wages:'60',place:'上海',experience:'5-10年',education:'本科',enterprise:'京东集团',img:require('../assets/companyHeadImg.jpg'),fname:'陈女士',postion:'招聘者'},
+        {name:'Java架构师',min_wages:'30',max_wages:'60',place:'上海',experience:'5-10年',education:'本科',enterprise:'京东集团',img:require('../assets/companyHeadImg2.jpg'),fname:'陈女士',postion:'招聘者'},
       ],
       hot:['热门企业','行业巨头','新锐公司','上市公司'],
       hot_ex:[
@@ -216,7 +216,7 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style>
+<style scoped>
 /* 顶部 */
 .home-top>.container>img{
   height: 7.5rem;  
@@ -322,7 +322,7 @@ export default {
 .search-but{
   width: 13.5%;
   text-align: center;
-  line-height: 270%;
+  line-height: 320%;
   cursor: pointer;
   transition: 0.3s;
 }
