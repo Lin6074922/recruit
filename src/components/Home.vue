@@ -44,8 +44,8 @@
         <!-- 热门职位 -->
         <div class="search-hot d-flex align-items-center">
           <b class="d-block">热门职位:</b>
-          <routerLink to="" href="javascript:;" class="zpcolor d-block">Java</routerLink>
-          <routerLink to="" href="javascript:;" class="zpcolor d-block">Java</routerLink>
+          <routerLink to="/job" href="javascript:;" class="zpcolor d-block">Java</routerLink>
+          <routerLink :to="{path:'/job'}" href="javascript:;" class="zpcolor d-block">Java</routerLink>
           <routerLink to="" href="javascript:;" class="zpcolor d-block">Java</routerLink>
           <routerLink to="" href="javascript:;" class="zpcolor d-block">Java</routerLink>
           <routerLink to="" href="javascript:;" class="zpcolor d-block">Java</routerLink>
